@@ -6,9 +6,9 @@ extends CanvasLayer
 var story_lines := [
 	"The stone forgets the light it kept\nThe Ancient Vault where shadows slept.",
 	"A princely soul, now merely Shade\nTrapped by the oath the sorcerer made.",
-	"Lsten close! The Earth is Rift\nBefore the final stone shall shift.",
+	"Listen close! The Earth is Rift\nBefore the final stone shall shift.",
 	"Your prison crumbles, dark and fast\nYour true form broken, doomed to last...",
-	"UNLESS you summon what you lack-\nA legion forgedthat will fight back.",
+	"UNLESS you summon what you lack-\nA legion forged that will fight back.",
 	"For every step, a copy cast\nYou are the key, the first, the last.",
 	"Forge your path out of the deep\nBefore the shadows rise and leap."
 ]
