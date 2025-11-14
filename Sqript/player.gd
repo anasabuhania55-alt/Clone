@@ -17,7 +17,7 @@ var is_dead: bool = false
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var clone_ray: RayCast2D = $CloneSpawnRay
 @onready var spawn_sound: AudioStreamPlayer2D = $CloneSound
-@onready var remove_sound: AudioStreamPlayer2D = $CloneRemoveSound     # ← الصوت الجديد
+@onready var remove_sound: AudioStreamPlayer2D = $CloneRemoveSound
 
 var clone_counter_label: Label
 
@@ -75,31 +75,25 @@ func _physics_process(delta: float) -> void:
 	# -----------------------------------------------------
 	if Input.is_action_just_pressed("clone") and clone_scene:
 
-		# إذا النسخة موجودة → إحذفها + صوت الإرجاع
+		# إذا النسخة موجودة → إحذفها + صوت الإرجاع (بدون عداد)
 		if is_instance_valid(current_clone):
-			remove_sound.play()              # ← شغل صوت الحذف
+			remove_sound.play()
 			current_clone.queue_free()
 			current_clone = null
 			return
 
-		# إذا ما في نسخة → اعمل Spawn
-		if clone_uses >= max_clones:
-			_die()
-			return
-
-		clone_uses += 1
-		update_clone_counter()
-
-		# تحديد مكان Spawn
+		# أولاً: نحاول نلاقي مكان مناسب للسبون
 		var facing_dir := -1.0 if anim.flip_h else 1.0
 		var front_offset := Vector2(clone_offset_x * facing_dir, 0)
 		var spawn_pos := global_position + front_offset
 		var can_spawn := true
 
+		# فحص الجهة الأمامية
 		clone_ray.target_position = front_offset
 		clone_ray.force_raycast_update()
 
 		if clone_ray.is_colliding():
+			# نحاول من الخلف بمسافة أصغر
 			var opposite_dir := -facing_dir
 			var back_offset := Vector2(clone_back_offset_x * opposite_dir, 0)
 			var back_pos := global_position + back_offset
@@ -113,17 +107,27 @@ func _physics_process(delta: float) -> void:
 			else:
 				spawn_pos = back_pos
 
+		# لو ما في مكان مناسب → لا عدّاد ولا موت ولا شيء
 		if not can_spawn:
 			return
 
-		# Safe distance
+		# Safe distance من اللاعب
 		if global_position.distance_to(spawn_pos) < 12.0:
 			var dir_vec := (spawn_pos - global_position).normalized()
 			spawn_pos = global_position + dir_vec * 12.0
 
+		# ثانياً: الآن فقط نتحقق من الحد الأقصى
+		if clone_uses >= max_clones:
+			_die()
+			return
+
+		# الآن نزيد العداد لأننا متأكدين إن السبون راح يتم
+		clone_uses += 1
+		update_clone_counter()
+
 		# Spawn the clone
 		var clone := clone_scene.instantiate()
-		spawn_sound.play()                  # ← شغل صوت Spawn
+		spawn_sound.play()
 		get_tree().current_scene.add_child(clone)
 		clone.global_position = spawn_pos
 
@@ -153,7 +157,6 @@ func update_clone_counter() -> void:
 
 	else:
 		print("clone_counter_label is NULL in update_clone_counter()!")
-
 
 
 func _die() -> void:
