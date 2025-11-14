@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbyfttt0hbxnj"]
+
+[ext_resource type="Script" uid="uid://su870t1ixs7n" path="res://Sqript/platformar.gd" id="1_nbroq"]
+[ext_resource type="Texture2D" uid="uid://t3ef4p856ijk" path="res://Asset/dark_castle_tileset.png" id="1_rc74t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbroq"]
+size = Vector2(32, 12)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nbroq"]
+polygon = PackedVector2Array(-24, -6, -24, 6, 8, 6, 8, -6)
+
+[node name="Platformar" type="StaticBody2D"]
+script = ExtResource("1_nbroq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rc74t")
+region_enabled = true
+region_rect = Rect2(143.39041, 30.526846, 17.192719, 15.886927)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
+texture = ExtResource("1_rc74t")
+region_enabled = true
+region_rect = Rect2(143.39041, 30.526846, 17.192719, 15.886927)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_nbroq")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_nbroq")

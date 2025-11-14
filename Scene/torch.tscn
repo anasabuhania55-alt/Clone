@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://clbvqsga2wh6d"]
+
+[ext_resource type="Script" uid="uid://c0fvgtpg7h2p1" path="res://Sqript/torch.gd" id="1_t8mkm"]
+[ext_resource type="Texture2D" uid="uid://y55g8y0d6w7o" path="res://Asset/Torch.png" id="3_bh61e"]
+[ext_resource type="Texture2D" uid="uid://bc13qnh21g5yj" path="res://Asset/download.jpg" id="3_exsy6"]
+[ext_resource type="Texture2D" uid="uid://dfqorbuwf6h43" path="res://Asset/TourchOn.png" id="4_coesq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh61e"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_coesq"]
+resource_name = "FlameOn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_bh61e"), ExtResource("4_coesq")]
+}
+
+[sub_resource type="Animation" id="Animation_coad1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_bh61e")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxbru"]
+_data = {
+&"FlameOn": SubResource("Animation_coesq"),
+&"RESET": SubResource("Animation_coad1")
+}
+
+[node name="Torch" type="Area2D"]
+script = ExtResource("1_t8mkm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1.1920929e-07)
+scale = Vector2(0.027343752, 0.025390627)
+texture = ExtResource("3_bh61e")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.062222224, 0.071111105)
+color = Color(1, 1, 0.47058824, 1)
+energy = 5.05
+texture = ExtResource("3_exsy6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bh61e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mxbru")
+}

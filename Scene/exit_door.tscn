@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://btny40iseuvmj"]
+
+[ext_resource type="Script" uid="uid://ovc8br5rdma4" path="res://Sqript/exit_door.gd" id="1_avtbc"]
+[ext_resource type="Texture2D" uid="uid://t3ef4p856ijk" path="res://Asset/dark_castle_tileset.png" id="1_xv2ti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv2ti"]
+size = Vector2(18, 26)
+
+[sub_resource type="Gradient" id="Gradient_avtbc"]
+offsets = PackedFloat32Array(0.080168776, 0.65822786)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vjd05"]
+gradient = SubResource("Gradient_avtbc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="ExitDoor" type="Area2D"]
+script = ExtResource("1_avtbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xv2ti")
+region_enabled = true
+region_rect = Rect2(273.8724, 25.236084, 29.147247, 39.738968)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_xv2ti")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.7500009, 2.499999)
+scale = Vector2(0.086666666, 0.11999999)
+color = Color(0.88661885, 0.85445577, 1, 1)
+energy = 5.33
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_vjd05")
+texture_scale = 23.61
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

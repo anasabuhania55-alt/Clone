@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://brknskw0xusyc"]
+
+[ext_resource type="AudioStream" uid="uid://cc1lytvrjetsq" path="res://Sounds/gloomy-depths-246916.mp3" id="1_x1c43"]
+
+[node name="BGMPlayer" type="Node2D"]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_x1c43")
+volume_db = -12.895
+autoplay = true

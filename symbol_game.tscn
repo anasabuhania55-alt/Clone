@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwb56ssjbyfrs"]
+
+[ext_resource type="Script" uid="uid://chfqe30llorle" path="res://Sqript/symbol_game.gd" id="1_ws48g"]
+[ext_resource type="Texture2D" uid="uid://fw3ot57e0wmf" path="res://Asset/Rune white/Rune white/white_pngwing.com (1).png" id="2_ftyla"]
+[ext_resource type="Texture2D" uid="uid://dgjyrr3afqufk" path="res://Asset/Rune white/Rune white/white_pngwing.com (2).png" id="3_hst8j"]
+[ext_resource type="Texture2D" uid="uid://dlkvd7t6kugfc" path="res://Asset/Rune white/Rune white/white_pngwing.com (3).png" id="4_sxxnx"]
+[ext_resource type="Texture2D" uid="uid://vttoxes5ip2d" path="res://Asset/Rune white/Rune white/white_pngwing.com (4).png" id="5_r30km"]
+[ext_resource type="Texture2D" uid="uid://fdsuimfxuc0d" path="res://Asset/Rune white/Rune white/white_pngwing.com (5).png" id="6_xu7va"]
+[ext_resource type="Texture2D" uid="uid://bx181plce5fhk" path="res://Asset/Rune white/Rune white/white_pngwing.com (6).png" id="7_q1w0r"]
+[ext_resource type="Texture2D" uid="uid://brwv8xliqcmjb" path="res://Asset/Rune white/Rune white/white_pngwing.com (7).png" id="8_q8fgi"]
+[ext_resource type="Texture2D" uid="uid://iljv2jh20vvh" path="res://Asset/Rune white/Rune white/white_pngwing.com (8).png" id="9_6hesm"]
+[ext_resource type="Texture2D" uid="uid://n13i12gflout" path="res://Asset/Rune white/Rune white/white_pngwing.com (9).png" id="10_0rgt0"]
+[ext_resource type="Texture2D" uid="uid://cug0xmwgp7nfg" path="res://Asset/Rune white/Rune white/white_pngwing.com.png" id="11_hlh8v"]
+
+[node name="SymbolGame" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ws48g")
+symbol_textures = Array[Texture2D]([ExtResource("2_ftyla"), ExtResource("3_hst8j"), ExtResource("4_sxxnx"), ExtResource("5_r30km"), ExtResource("6_xu7va"), ExtResource("7_q1w0r"), ExtResource("8_q8fgi"), ExtResource("9_6hesm"), ExtResource("10_0rgt0"), ExtResource("11_hlh8v")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -44.5
+offset_right = 21.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SymbolsGrid" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="ResultLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Rest"
+
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

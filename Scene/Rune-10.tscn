@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo2mcpppka743"]
+
+[ext_resource type="Script" uid="uid://dp8hw2jcolfna" path="res://Sqript/rune.gd" id="1_ulm0v"]
+[ext_resource type="Texture2D" uid="uid://cug0xmwgp7nfg" path="res://Asset/Rune white/Rune white/white_pngwing.com.png" id="2_ulm0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8r2o"]
+size = Vector2(16, 20)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ulm0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n8r2o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.2966855, 0.0028174056, 0.3045659, 1)
+scale = Vector2(0.03307263, 0.03307263)
+texture = ExtResource("2_ulm0v")
