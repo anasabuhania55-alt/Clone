@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3w7t4feeo6k7"]
+[gd_scene load_steps=29 format=3 uid="uid://b3w7t4feeo6k7"]
 
 [ext_resource type="Texture2D" uid="uid://t3ef4p856ijk" path="res://Asset/dark_castle_tileset.png" id="1_g7pij"]
 [ext_resource type="PackedScene" uid="uid://cuwbod67cijeh" path="res://Scene/player.tscn" id="2_qc8uo"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://bbyfttt0hbxnj" path="res://Scene/platformar.tscn" id="17_pby6e"]
 [ext_resource type="PackedScene" uid="uid://cwb56ssjbyfrs" path="res://symbol_game.tscn" id="18_iekox"]
 [ext_resource type="Script" uid="uid://dq6stqjg812b3" path="res://Sqript/torch_manager.gd" id="19_txuhm"]
+[ext_resource type="Script" uid="uid://bo53x8qt845xy" path="res://Sqript/level_timer.gd" id="22_ordrc"]
+[ext_resource type="PackedScene" uid="uid://dtvavsnf0bmjl" path="res://Scene/collapse_ui.tscn" id="23_28411"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3amdw"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -156,6 +158,7 @@ clone_counter_path = NodePath("../CanvasLayer/VBoxContainer/CloneCounter")
 position = Vector2(91, -74)
 zoom = Vector2(3, 3)
 script = ExtResource("3_qc8uo")
+level_timer_path = NodePath("../../LevelTimer")
 
 [node name="ShakeSound" type="AudioStreamPlayer2D" parent="Player/Camera2D"]
 stream = ExtResource("4_d5ymh")
@@ -263,6 +266,17 @@ theme_override_font_sizes/font_size = 24
 text = "Runes: 0/3
 "
 
+[node name="TimerLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ordrc")
+theme_override_font_sizes/font_size = 24
+text = "03:00"
+
 [node name="TorchManager" type="Node" parent="."]
 script = ExtResource("19_txuhm")
 torch_counter_path = NodePath("../CanvasLayer/VBoxContainer/TorchCounter")
+
+[node name="LevelTimer" type="Node" parent="."]
+script = ExtResource("22_ordrc")
+timer_label_path = NodePath("../CanvasLayer/VBoxContainer/TimerLabel")
+collapse_ui_scene = ExtResource("23_28411")

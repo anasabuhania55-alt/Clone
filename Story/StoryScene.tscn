@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi2b57mn5rifc"]
+
+[ext_resource type="Texture2D" uid="uid://bbimdrp1kgdaa" path="res://Story/BG.png" id="1_d8oqr"]
+[ext_resource type="Script" uid="uid://pk2h3td7d36p" path="res://Story/StoryScene.gd" id="1_esa07"]
+[ext_resource type="FontFile" uid="uid://b3gtti3d33udt" path="res://Asset/Char/Font/Planes_ValMore.ttf" id="3_ln3v3"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_esa07")
+wait_time = 3.5
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_d8oqr")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 477.0
+offset_top = 187.0
+offset_right = 1377.0
+offset_bottom = 687.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(900, 500)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ln3v3")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
