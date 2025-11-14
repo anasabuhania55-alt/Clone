@@ -178,7 +178,7 @@ grow_vertical = 0
 scale = Vector2(0.74044925, 0.6799997)
 theme_override_fonts/font = ExtResource("4_ordrc")
 theme_override_font_sizes/font_size = 16
-text = "Use youre clone to scape .."
+text = "Use youre clone to escape .."
 
 [node name="Label2" type="Label" parent="."]
 anchors_preset = 2
